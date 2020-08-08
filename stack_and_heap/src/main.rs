@@ -19,7 +19,7 @@ fn stack_and_heap() {
 
     println!("p1 takes up {} bytes", mem::size_of_val(&p1));
     println!("p2 takes up {} bytes", mem::size_of_val(&p2));
-    
+
     let p3 = *p2;
     println!("{}", p3.x);
 }
