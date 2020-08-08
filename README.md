@@ -1,1 +1,1 @@
-RUST COURSE 1
+Rust Course 1
