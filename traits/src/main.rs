@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 fn main() {
     traits();
 }
@@ -10,6 +12,24 @@ trait Animal {
     }
 }
 
+fn test(animal: impl Animal + Debug) {
+    println!("{:?}", animal);
+    println!("{}", animal.name());
+}
+
+fn test2<T: Animal + Debug>(animal: T, animal2: T) {
+    println!("{:?}", animal);
+    println!("{:?}", animal2);
+    println!("{}", animal.name());
+    println!("{}", animal2.name());
+}
+
+fn test3<T>(animal: T) where T: Animal + Debug {
+    println!("{:?}", animal);
+    println!("{}", animal.name());
+}
+
+#[derive(Debug, Clone, Copy)]
 struct Human {
     name: &'static str
 }
@@ -28,6 +48,7 @@ impl Animal for Human {
     }
 }
 
+#[derive(Debug, Clone, Copy)]
 struct Cat {
     name: &'static str
 }
@@ -68,4 +89,9 @@ fn traits() {
 
     let a = vec![1, 2, 3];
     println!("{}", a.sum());
+
+    test(h);
+    test2(h, h2);
+    test3(h);
+    test3(c);
 }
